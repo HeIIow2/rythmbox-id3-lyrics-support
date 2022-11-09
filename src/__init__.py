@@ -70,6 +70,8 @@ class LyricGrabber(object):
         print(path)
         tags = ID3(path)
         lyrics_list = tags.getall("USLT")
+        track_list = tags.getall("RVA2")
+        print(track_list)
         print(lyrics_list)
         if len(lyrics_list) == 0:
             self.callback("no lyrics available :(")
@@ -79,9 +81,6 @@ class LyricGrabber(object):
         lyrics_text = lyrics_text.strip()
 
         self.callback(lyrics_text)
-
-
-
 
 
 class LyricsWidget(Gtk.Widget):
@@ -95,10 +94,6 @@ class LyricsWidget(Gtk.Widget):
         self.hbox = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
         self.hbox.set_spacing(6)
         self.hbox.set_layout(Gtk.ButtonBoxStyle.END)
-        # self.hbox.add(self.edit)
-        # self.hbox.add(self.clear)
-        # self.hbox.add(self.discard)
-        # self.hbox.set_child_secondary(self.clear, True)
 
         (self.view, self.buffer, self.tview) = create_lyrics_view()
 
@@ -142,7 +137,6 @@ class LyricsWidget(Gtk.Widget):
         self.buffer.set_text(_("Searching for lyrics..."), -1);
         lyrics_grabber = LyricGrabber(self.db, self.entry)
         lyrics_grabber.search_lyrics(self.__got_lyrics)
-        self.__got_lyrics("these are lyrics xD")
 
 
 class ID3Lyrics(GObject.Object, Peas.Activatable):
