@@ -77,12 +77,13 @@ class LyricGrabber(object):
 
         artist = self.entry.get_string(RB.RhythmDBPropType.ARTIST)
         title = self.entry.get_string(RB.RhythmDBPropType.TITLE)
-        print(artist, title)
 
         lyrics_text = lyrics_list[0].text
         lyrics_text = lyrics_text.strip()
 
-        self.callback(lyrics_text)
+        final_lyrics = f"{artist} - {title} ({lyrics_list[0].lang})\n\n{lyrics_text}"
+
+        self.callback(final_lyrics)
 
 
 class LyricsWidget(Gtk.Widget):
