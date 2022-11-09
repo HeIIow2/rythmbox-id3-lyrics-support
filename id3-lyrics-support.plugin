@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python3
+Module=src
+IAge=2
+Name=MP3 ID3 Lyrics support
+Description=This plugin adds support, to read lyrics from ID3 Containers in MP3 files
+Authors=@hellow_2:matrix.org
+Copyright=Copyright © 2022 Hellow2
+Website=https://github.com/HeIIow2/rythmbox-id3-lyrics-support
