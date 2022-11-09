@@ -75,7 +75,7 @@ class LyricGrabber(object):
             self.callback("no lyrics available :(")
             return
 
-        self.callback(lyrics_list[0]["text"])
+        self.callback(lyrics_list[0].text)
 
 
 
