@@ -2,6 +2,14 @@ from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 from mutagen.id3 import ID3, USLT
 import urllib.parse
 
+"""
+how to write those plugins: https://wiki.gnome.org/Apps/Rhythmbox/Plugins/WritingGuide
+
+I took some code from this plugin: https://gitlab.gnome.org/GNOME/rhythmbox/-/tree/master/plugins/lyrics
+thanks <33333 :3
+"""
+
+FILE_INDICATOR = "file://"
 
 def create_lyrics_view():
     tview = Gtk.TextView()
@@ -52,7 +60,6 @@ class LyricGrabber(object):
         Supported file formats and lyrics tags:
         - ogg/vorbis files with "LYRICS" and "SYNCLYRICS" tag
         """
-        FILE_INDICATOR = "file://"
 
         is_local = False
 
