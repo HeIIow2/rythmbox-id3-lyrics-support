@@ -66,6 +66,7 @@ class LyricGrabber(object):
             self.callback("only local files are supported. Sorry :(")
             return
 
+        print(path)
         lyrics_list = ID3(path)
         if len(lyrics_list) == 0:
             self.callback("no lyrics available :(")
