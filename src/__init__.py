@@ -1,8 +1,9 @@
-from gi.repository import GObject, RB, Peas
+from gi.repository import GObject, RB, Peas, Gtk
 
 
-class LyricsWidget(object):
+class LyricsWidget(Gtk.Widget):
     def __init__(self, db, song_info):
+        super().__init__()
         self.db = db
         self.song_info = song_info
 
