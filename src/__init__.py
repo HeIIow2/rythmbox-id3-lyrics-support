@@ -75,8 +75,8 @@ class LyricGrabber(object):
             self.callback("no lyrics available :(")
             return
 
-        artist = entry.get_string(RB.RhythmDBPropType.ARTIST)
-        title = entry.get_string(RB.RhythmDBPropType.TITLE)
+        artist = self.entry.get_string(RB.RhythmDBPropType.ARTIST)
+        title = self.entry.get_string(RB.RhythmDBPropType.TITLE)
         print(artist, title)
 
         lyrics_text = lyrics_list[0].text
