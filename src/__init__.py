@@ -70,12 +70,14 @@ class LyricGrabber(object):
         print(path)
         tags = ID3(path)
         lyrics_list = tags.getall("USLT")
-        track_list = tags.getall("RVA2")
-        print(self.entry.name)
-        print(lyrics_list)
+
         if len(lyrics_list) == 0:
             self.callback("no lyrics available :(")
             return
+
+        artist = entry.get_string(RB.RhythmDBPropType.ARTIST)
+        title = entry.get_string(RB.RhythmDBPropType.TITLE)
+        print(artist, title)
 
         lyrics_text = lyrics_list[0].text
         lyrics_text = lyrics_text.strip()
