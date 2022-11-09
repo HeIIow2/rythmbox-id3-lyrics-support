@@ -51,12 +51,16 @@ class LyricGrabber(object):
         Supported file formats and lyrics tags:
         - ogg/vorbis files with "LYRICS" and "SYNCLYRICS" tag
         """
-        # <GstPbutils.DiscovererInfo object at 0x7f8ab176c4c0 (GstDiscovererInfo at 0x555789781240)> is info
-        # info.get_tags()
         print(self.entry.get_playback_uri())
         print("weeeeeeee")
 
-        self.callback("different one")
+        lyrics_list = ID3(self.entry.get_playback_uri())
+        if len(lyrics_list) == 0:
+            self.callback("no lyrics available :(")
+
+        self.callback(lyrics_list[0]["text"])
+
+
 
 
 
