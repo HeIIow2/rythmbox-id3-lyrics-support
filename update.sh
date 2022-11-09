@@ -10,3 +10,5 @@ git push
 
 cd ~/.local/share/rhythmbox/plugins/rythmbox-id3-lyrics-support
 git pull
+
+rhythmbox -d
