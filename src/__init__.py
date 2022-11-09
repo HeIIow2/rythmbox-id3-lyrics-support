@@ -71,7 +71,7 @@ class LyricGrabber(object):
         tags = ID3(path)
         lyrics_list = tags.getall("USLT")
         track_list = tags.getall("RVA2")
-        print(track_list)
+        print(self.entry.name)
         print(lyrics_list)
         if len(lyrics_list) == 0:
             self.callback("no lyrics available :(")
