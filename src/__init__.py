@@ -51,12 +51,27 @@ class LyricGrabber(object):
         Supported file formats and lyrics tags:
         - ogg/vorbis files with "LYRICS" and "SYNCLYRICS" tag
         """
-        print(self.entry.get_playback_uri())
-        print("weeeeeeee")
+        FILE_INDICATOR = "file://"
 
-        lyrics_list = ID3(self.entry.get_playback_uri())
+        is_local = False
+
+        url = self.entry.get_playback_uri()
+        path = ""
+        if FILE_INDICATOR == url[:len(FILE_INDICATOR)]:
+            is_local = True
+            path = url[len(FILE_INDICATOR)]
+
+        print(url[:len(FILE_INDICATOR)])
+        print(url[len(FILE_INDICATOR):])
+
+        if not is_local:
+            self.callback("only local files are supported. Sorry :(")
+            return
+
+        lyrics_list = ID3(path)
         if len(lyrics_list) == 0:
             self.callback("no lyrics available :(")
+            return
 
         self.callback(lyrics_list[0]["text"])
 
