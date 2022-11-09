@@ -50,6 +50,12 @@ class LyricsWidget(Gtk.Widget):
         nb = self.view.get_parent()
         self.switch_page_id = nb.connect('switch-page', self.switch_page_cb)
 
+    def entry_changed(self, pspec, duh):
+        self.entry = self.song_info.props.current_entry
+        self.have_lyrics = 0
+        if self.visible != 0:
+            self.get_lyrics()
+
     def switch_page_cb(self, notebook, page, page_num):
         if self.have_lyrics != 0:
             return
