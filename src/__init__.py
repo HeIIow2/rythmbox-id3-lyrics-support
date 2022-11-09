@@ -1,4 +1,5 @@
-from gi.repository import GObject, RB, Peas, Gtk
+from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
+from mutagen.id3 import ID3, USLT
 
 
 def create_lyrics_view():
@@ -19,6 +20,52 @@ def create_lyrics_view():
     return (vbox, tview.get_buffer(), tview)
 
 
+class LyricGrabber(object):
+    def __init__(self, db, entry):
+        self.db = db
+        self.entry = entry
+
+        (self.artist, self.title) = parse_song_data(self.db, self.entry)
+
+        self.cache_path = build_cache_path(self.artist, self.title)
+
+    def verify_lyric(self):
+        return os.path.exists(self.cache_path)
+
+    def search_lyrics(self, callback):
+        self.callback = callback
+
+        self.search_tags()
+
+    def search_tags(self):
+        """
+        Initiate fetching meta tags.
+
+        Result will be handled in search_tags_result
+        """
+        location = self.entry.get_playback_uri()
+        self.discoverer = GstPbutils.Discoverer(timeout=Gst.SECOND * 3)
+        self.discoverer.connect('discovered', self.search_tags_result)
+        self.discoverer.start()
+        self.discoverer.discover_uri_async(location)
+
+    def search_tags_result(self, discoverer, info, error):
+        """
+        Extract lyrics from the file meta data (tags).
+
+        If no lyrics tags are found, online services are tried next.
+
+        Supported file formats and lyrics tags:
+        - ogg/vorbis files with "LYRICS" and "SYNCLYRICS" tag
+        """
+        tags = info.get_tags()
+        print(tags)
+        print("weeeeeeee")
+
+        self.lyrics_found("difrent one")
+
+
+
 class LyricsWidget(Gtk.Widget):
     def __init__(self, db, song_info):
         super().__init__()
@@ -30,10 +77,10 @@ class LyricsWidget(Gtk.Widget):
         self.hbox = Gtk.ButtonBox(orientation=Gtk.Orientation.HORIZONTAL)
         self.hbox.set_spacing(6)
         self.hbox.set_layout(Gtk.ButtonBoxStyle.END)
-        #self.hbox.add(self.edit)
-        #self.hbox.add(self.clear)
-        #self.hbox.add(self.discard)
-        #self.hbox.set_child_secondary(self.clear, True)
+        # self.hbox.add(self.edit)
+        # self.hbox.add(self.clear)
+        # self.hbox.add(self.discard)
+        # self.hbox.set_child_secondary(self.clear, True)
 
         (self.view, self.buffer, self.tview) = create_lyrics_view()
 
@@ -75,8 +122,8 @@ class LyricsWidget(Gtk.Widget):
             return
 
         self.buffer.set_text(_("Searching for lyrics..."), -1);
-        # lyrics_grabber = LyricGrabber(self.db, self.entry)
-        # lyrics_grabber.search_lyrics(self.__got_lyrics)
+        lyrics_grabber = LyricGrabber(self.db, self.entry)
+        lyrics_grabber.search_lyrics(self.__got_lyrics)
         self.__got_lyrics("these are lyrics xD")
 
 
