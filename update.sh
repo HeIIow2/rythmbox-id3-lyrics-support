@@ -12,4 +12,4 @@ cd ~/.local/share/rhythmbox/plugins/rythmbox-id3-lyrics-support
 git pull
 
 pkill rhythmbox
-rhythmbox -d
+rhythmbox -D src
