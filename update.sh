@@ -8,5 +8,5 @@ git add .
 git commit -am "$commit_message"
 git push
 
-cd ~/.local/share/rhythmbox/plugins/rythmbox-id3-lyrics-support || exit
+cd ~/.local/share/rhythmbox/plugins/rythmbox-id3-lyrics-support
 git pull
