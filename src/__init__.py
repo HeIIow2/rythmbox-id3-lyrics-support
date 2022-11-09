@@ -25,13 +25,6 @@ class LyricGrabber(object):
         self.db = db
         self.entry = entry
 
-        (self.artist, self.title) = parse_song_data(self.db, self.entry)
-
-        self.cache_path = build_cache_path(self.artist, self.title)
-
-    def verify_lyric(self):
-        return os.path.exists(self.cache_path)
-
     def search_lyrics(self, callback):
         self.callback = callback
 
