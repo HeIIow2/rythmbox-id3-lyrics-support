@@ -52,10 +52,10 @@ class LyricGrabber(object):
         - ogg/vorbis files with "LYRICS" and "SYNCLYRICS" tag
         """
         tags = info.get_tags()
-        print(tags)
+        print(info)
         print("weeeeeeee")
 
-        self.lyrics_found("difrent one")
+        self.callback("different one")
 
 
 
