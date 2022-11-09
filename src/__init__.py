@@ -53,7 +53,7 @@ class LyricGrabber(object):
         """
         # <GstPbutils.DiscovererInfo object at 0x7f8ab176c4c0 (GstDiscovererInfo at 0x555789781240)> is info
         # info.get_tags()
-        print(self.db)
+        print(self.entry)
         print("weeeeeeee")
 
         self.callback("different one")
