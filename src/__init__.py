@@ -1,5 +1,6 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 from mutagen.id3 import ID3, USLT
+import urllib.parse
 
 
 def create_lyrics_view():
@@ -59,10 +60,7 @@ class LyricGrabber(object):
         path = ""
         if FILE_INDICATOR == url[:len(FILE_INDICATOR)]:
             is_local = True
-            path = url[len(FILE_INDICATOR)]
-
-        print(url[:len(FILE_INDICATOR)])
-        print(url[len(FILE_INDICATOR):])
+            path = urllib.parse.unquote(url[len(FILE_INDICATOR)])
 
         if not is_local:
             self.callback("only local files are supported. Sorry :(")
