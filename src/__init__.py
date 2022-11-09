@@ -61,6 +61,7 @@ class LyricGrabber(object):
         if FILE_INDICATOR == url[:len(FILE_INDICATOR)]:
             is_local = True
             path = urllib.parse.unquote(url[len(FILE_INDICATOR)])
+            print(path)
 
         if not is_local:
             self.callback("only local files are supported. Sorry :(")
