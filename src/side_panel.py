@@ -22,6 +22,7 @@ class SidePanel:
         self.hide_label = False
 
         self.vbox = Gtk.VBox()
+        hbox_header = Gtk.HBox()
 
         # create a TextView for displaying lyrics
         self.textview = Gtk.TextView()
