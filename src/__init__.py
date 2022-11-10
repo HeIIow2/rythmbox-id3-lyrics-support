@@ -1,14 +1,7 @@
 from gi.repository import GObject, Peas
 
-# import os, sys
-# sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 import src.song_info_window
-
-# from song_info_window import LyricsWidget
-
-# __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
-
-
+import src.side_panel
 
 
 """
@@ -31,6 +24,7 @@ class ID3Lyrics(GObject.Object, Peas.Activatable):
         print("activating support for id3 lyrics")
 
         shell = self.object
+        self.side_panel = side_panel.SidePanel(shell)
         self.csi_id = shell.connect("create_song_info", self.create_song_info)
 
     def do_deactivate(self):
@@ -45,6 +39,7 @@ class ID3Lyrics(GObject.Object, Peas.Activatable):
         shell = self.object
         shell.disconnect(self.csi_id)
         del self.csi_id
+        del self.side_panel
 
     def create_song_info(self, shell, song_info, is_multiple):
         if is_multiple is False:

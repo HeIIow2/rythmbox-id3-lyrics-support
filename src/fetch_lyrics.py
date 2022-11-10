@@ -7,7 +7,6 @@ FILE_INDICATOR = "file://"
 
 class LyricGrabber(object):
     def __init__(self, db, entry):
-        self.db = db
         self.entry = entry
 
     def search_lyrics(self, callback):
