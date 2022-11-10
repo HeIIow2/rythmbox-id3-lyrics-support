@@ -3,7 +3,6 @@ from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 # import os, sys
 # sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 from src.fetch_lyrics import LyricGrabber
-from src import MISSING_LYRICS_MESSAGES
 
 
 def create_lyrics_view():
