@@ -19,11 +19,7 @@ VIEW_MENU_UI = """
 class SidePanel:
     def __init__(self, shell):
         self.shell = shell
-
-        uim = self.shell.get_ui_manager()
-        uim.add_ui_from_string(VIEW_MENU_UI)
-
-        self.vbox = Gtk.VBox()
+        self.hide_label = False
 
         # create a TextView for displaying lyrics
         self.textview = Gtk.TextView()
@@ -49,8 +45,6 @@ class SidePanel:
                                               pixels_above_lines=10, pixels_below_lines=20)
         # tag to highlight synchronized lyrics
         self.sync_tag = self.textbuffer.create_tag(None, weight=600)
-
-        self.hbox = Gtk.HBox()
 
         # pack everything into side pane
         self.vbox.pack_start(hbox_header, False, False, 0)
