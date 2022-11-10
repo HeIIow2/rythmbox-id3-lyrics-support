@@ -1,4 +1,7 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
+from lLyrics_rb3compat import ActionGroup
+from lLyrics_rb3compat import ApplicationShell
+
 import src.fetch_lyrics
 
 # thanks soooo much <333 https://github.com/dmo60/lLyrics
