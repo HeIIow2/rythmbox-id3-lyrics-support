@@ -1,6 +1,8 @@
 import random
 
-from src import MISSING_LYRICS_MESSAGES
+MISSING_LYRICS_MESSAGES = [
+    "Nobody here but us chickens! :3"
+]
 
 
 def get_missing_lyrics_message():

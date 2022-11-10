@@ -13,10 +13,6 @@ thanks <33333 :3
 
 FILE_INDICATOR = "file://"
 
-MISSING_LYRICS_MESSAGES = [
-    "Nobody here but us chickens! :3"
-]
-
 
 class ID3Lyrics(GObject.Object, Peas.Activatable):
     object = GObject.property(type=GObject.Object)
