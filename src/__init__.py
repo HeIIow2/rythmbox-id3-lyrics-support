@@ -2,13 +2,14 @@ from gi.repository import GObject, Peas
 
 import os, sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+import song_info_window
 
 # from song_info_window import LyricsWidget
 
 __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
 
 
-import song_info_window
+
 
 """
 how to write those plugins: https://wiki.gnome.org/Apps/Rhythmbox/Plugins/WritingGuide
