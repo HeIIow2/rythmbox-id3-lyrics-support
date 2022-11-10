@@ -13,7 +13,7 @@ class LyricGrabber(object):
     def search_lyrics(self, callback):
         self.callback = callback
 
-        self.search_tags_result()
+        self.search_tags()
 
     def search_tags(self):
         """
