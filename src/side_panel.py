@@ -1,6 +1,4 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
-from lLyrics_rb3compat import ActionGroup
-from lLyrics_rb3compat import ApplicationShell
 
 import src.fetch_lyrics
 
@@ -22,8 +20,9 @@ class SidePanel:
     def __init__(self, shell):
         self.shell = shell
 
-        self.appshell = ApplicationShell(self.shell)
-        self.appshell.add_app_menuitems(VIEW_MENU_UI, 'lLyricsPluginToggleActions', 'view')
+        uim = self.shell.props.ui_manager
+        uim.add_ui_from_string(VIEW_MENU_UI)
+        uim.ensure_update()
 
         self.vbox = Gtk.VBox()
 
