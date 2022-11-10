@@ -19,6 +19,7 @@ VIEW_MENU_UI = """
 class SidePanel:
     def __init__(self, shell):
         self.shell = shell
+        self.position = RB.ShellUILocation.RIGHT_SIDEBAR
         self.hide_label = False
 
         self.vbox = Gtk.VBox()
@@ -61,7 +62,7 @@ class SidePanel:
         if self.hide_label:
             self.label.hide()
 
-        self.visible = False
+        self.shell.add_widget(self.vbox, self.position, True, True)
 
     def set_displayed_text(self, text):
         self.textbuffer.set_text(text)
