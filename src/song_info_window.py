@@ -11,6 +11,14 @@ def create_lyrics_view():
     tview.set_editable(False)
     tview.set_left_margin(6)
 
+    tview.set_editable(False)
+    tview.set_cursor_visible(False)
+    tview.set_left_margin(10)
+    tview.set_right_margin(10)
+    tview.set_pixels_above_lines(5)
+    tview.set_pixels_below_lines(5)
+    tview.set_wrap_mode(Gtk.WrapMode.WORD)
+
     tview.set_size_request(0, 0)
     sw = Gtk.ScrolledWindow()
     sw.add(tview)
@@ -38,15 +46,8 @@ class LyricsWidget(Gtk.Widget):
         (self.view, self.buffer, self.tview) = create_lyrics_view()
 
         self.view.pack_start(self.hbox, False, False, 0)
-        #self.view.set_spacing(6)
-        #self.view.props.margin = 6
-        self.view.set_editable(False)
-        self.view.set_cursor_visible(False)
-        self.view.set_left_margin(10)
-        self.view.set_right_margin(10)
-        self.view.set_pixels_above_lines(5)
-        self.view.set_pixels_below_lines(5)
-        self.view.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.view.set_spacing(6)
+        self.view.props.margin = 6
 
         self.view.show_all()
         self.page_num = song_info.append_page(_("Lyrics"), self.view)
