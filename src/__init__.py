@@ -1,13 +1,13 @@
-from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
-import sys
-import os
+from gi.repository import GObject, Peas
+
+import os, sys
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 # from song_info_window import LyricsWidget
 
 __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
 
-current = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(current)
+
 import song_info_window
 
 """
