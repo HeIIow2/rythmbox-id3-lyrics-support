@@ -1,6 +1,9 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 
-from song_info_window import LyricsWidget
+# from song_info_window import LyricsWidget
+
+__all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
+import song_info_window
 
 """
 how to write those plugins: https://wiki.gnome.org/Apps/Rhythmbox/Plugins/WritingGuide
@@ -39,4 +42,4 @@ class ID3Lyrics(GObject.Object, Peas.Activatable):
 
     def create_song_info(self, shell, song_info, is_multiple):
         if is_multiple is False:
-            pane = LyricsWidget(shell.props.db, song_info)
+            pane = song_info_window.LyricsWidget(shell.props.db, song_info)
