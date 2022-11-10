@@ -38,8 +38,15 @@ class LyricsWidget(Gtk.Widget):
         (self.view, self.buffer, self.tview) = create_lyrics_view()
 
         self.view.pack_start(self.hbox, False, False, 0)
-        self.view.set_spacing(6)
-        self.view.props.margin = 6
+        #self.view.set_spacing(6)
+        #self.view.props.margin = 6
+        self.view.set_editable(False)
+        self.view.set_cursor_visible(False)
+        self.view.set_left_margin(10)
+        self.view.set_right_margin(10)
+        self.view.set_pixels_above_lines(5)
+        self.view.set_pixels_below_lines(5)
+        self.view.set_wrap_mode(Gtk.WrapMode.WORD)
 
         self.view.show_all()
         self.page_num = song_info.append_page(_("Lyrics"), self.view)
@@ -75,5 +82,4 @@ class LyricsWidget(Gtk.Widget):
             return
 
         self.buffer.set_text(_("Searching for lyrics..."), -1);
-        lyrics_grabber = LyricGrabber(self.entry)
-        lyrics_grabber.search_lyrics(self.__got_lyrics)
+        lyrics_grabber = LyricGrabber(self.entry, self.buffer)
