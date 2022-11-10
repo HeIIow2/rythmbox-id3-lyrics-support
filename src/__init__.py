@@ -1,8 +1,8 @@
 from gi.repository import GObject, Peas
 
-import os, sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-import song_info_window
+# import os, sys
+# sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+import src.song_info_window
 
 # from song_info_window import LyricsWidget
 
