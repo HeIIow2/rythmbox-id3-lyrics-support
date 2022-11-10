@@ -1,19 +1,9 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils, Pango
 
 import src.fetch_lyrics
+from src.utils import get_missing_lyrics_message
 
 # thanks soooo much <333 https://github.com/dmo60/lLyrics
-
-
-VIEW_MENU_UI = """
-<ui>
-    <menubar name="MenuBar">
-        <menu name="ViewMenu" action="View">
-            <menuitem name="lLyrics" action="ToggleLyricSideBar" />
-        </menu>
-    </menubar>
-</ui>
-"""
 
 
 class SidePanel:
@@ -76,7 +66,7 @@ class SidePanel:
     def update_lyrics(self, player, entry):
         current_src = self.shell.props.shell_player.get_playing_source()
         if current_src is None:
-            self.set_displayed_text("No songs playing so here is some love\n<333 :3\n<333 :3")
+            self.set_displayed_text(get_missing_lyrics_message())
             return
 
         lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry, self.textbuffer)

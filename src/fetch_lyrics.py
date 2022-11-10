@@ -2,6 +2,8 @@ from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils, Pango
 from mutagen.id3 import ID3
 import urllib.parse
 
+from src.utils import get_missing_lyrics_message
+
 FILE_INDICATOR = "file://"
 
 
@@ -16,7 +18,6 @@ class LyricGrabber(object):
                                               pixels_above_lines=10, pixels_below_lines=20)
 
         self.search_tags()
-
 
     def search_tags(self):
         """
@@ -56,7 +57,7 @@ class LyricGrabber(object):
         lyrics_list = tags.getall("USLT")
 
         if len(lyrics_list) == 0:
-            self.callback("no lyrics available :(")
+            self.callback(get_missing_lyrics_message())
             return
 
         artist = self.entry.get_string(RB.RhythmDBPropType.ARTIST)
