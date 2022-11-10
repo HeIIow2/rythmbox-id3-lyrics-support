@@ -45,9 +45,7 @@ class SidePanel:
         self.textbuffer = Gtk.TextBuffer()
         self.textview.set_buffer(self.textbuffer)
 
-        # tag to style headers bold and underlined
-        self.tag = self.textbuffer.create_tag(None, underline=Pango.Underline.SINGLE, weight=600,
-                                              pixels_above_lines=10, pixels_below_lines=20)
+
         # tag to highlight synchronized lyrics
         self.sync_tag = self.textbuffer.create_tag(None, weight=600)
 
@@ -81,8 +79,8 @@ class SidePanel:
             self.set_displayed_text("No songs playing so here is some love\n<333 :3\n<333 :3")
             return
 
-        lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry)
-        lyrics_grabber.search_lyrics(self.set_displayed_text)
+        lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry, self.textbuffer)
+        # lyrics_grabber.search_lyrics(self.set_displayed_text)
 
 
     def scan_selected_source_callback(self, action, activated_action):

@@ -6,14 +6,17 @@ FILE_INDICATOR = "file://"
 
 
 class LyricGrabber(object):
-    def __init__(self, entry):
+    def __init__(self, entry, textbuffer):
         self.entry = entry
         self.uri = self.entry.get_playback_uri()
+        self.textbuffer = textbuffer
 
-    def search_lyrics(self, callback):
-        self.callback = callback
+        # tag to style headers bold and underlined
+        self.tag = self.textbuffer.create_tag(None, underline=Pango.Underline.SINGLE, weight=600,
+                                              pixels_above_lines=10, pixels_below_lines=20)
 
         self.search_tags()
+
 
     def search_tags(self):
         """
@@ -62,6 +65,14 @@ class LyricGrabber(object):
         lyrics_text = lyrics_list[0].text
         lyrics_text = lyrics_text.strip()
 
-        final_lyrics = f"{artist} - {title} ({lyrics_list[0].lang})\n\n{lyrics_text}"
+        # final_lyrics = f"{artist} - {title} ({lyrics_list[0].lang})\n\n{lyrics_text}"
 
-        self.callback(final_lyrics)
+        # self.callback(final_lyrics)
+
+        self.textbuffer.set_text("%s - %s\n%s" % (artist, title, lyrics))
+
+        # make 'artist - title' header bold and underlined
+        start = self.textbuffer.get_start_iter()
+        end = start.copy()
+        end.forward_to_line_end()
+        self.textbuffer.apply_tag(self.tag, start, end)
