@@ -26,7 +26,7 @@ class LyricGrabber(object):
         self.discoverer.start()
         self.discoverer.discover_uri_async(self.uri)
 
-    def search_tags_result(self, , discoverer, info, error):
+    def search_tags_result(self, discoverer, info, error):
         """
         Extract lyrics from the file meta data (tags).
 
