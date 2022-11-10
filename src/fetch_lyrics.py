@@ -23,7 +23,7 @@ class LyricGrabber(object):
         self.discoverer = GstPbutils.Discoverer(timeout=Gst.SECOND * 3)
         self.discoverer.connect('discovered', self.search_tags_result)
         self.discoverer.start()
-        self.discoverer.discover_uri_async(location)
+        self.discoverer.discover_uri_async(self.uri)
 
     def search_tags_result(self):
         """
