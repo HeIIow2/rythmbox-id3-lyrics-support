@@ -52,8 +52,8 @@ class SidePanel:
         # pack everything into side pane
         self.vbox.pack_start(hbox_header, False, False, 0)
         self.vbox.pack_start(sw, True, True, 0)
-        self.vbox.pack_end(self.hbox, False, False, 3)
-        self.vbox.pack_end(self.back_button, False, False, 3)
+        # self.vbox.pack_end(self.hbox, False, False, 3)
+        # self.vbox.pack_end(self.back_button, False, False, 3)
 
         self.vbox.show_all()
         self.hbox.hide()
