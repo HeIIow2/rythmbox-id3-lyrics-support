@@ -82,7 +82,7 @@ class SidePanel:
             return
 
         lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry.get_playback_uri())
-        lyrics_grabber.search_lyrics(self.show_lyrics)
+        lyrics_grabber.search_lyrics(self.set_displayed_text)
 
 
     def scan_selected_source_callback(self, action, activated_action):
