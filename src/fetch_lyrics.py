@@ -6,8 +6,9 @@ FILE_INDICATOR = "file://"
 
 
 class LyricGrabber(object):
-    def __init__(self, uri):
-        self.uri = uri
+    def __init__(self, entry):
+        self.entry = entry
+        self.uri = self.entry.get_playback_uri()
 
     def search_lyrics(self, callback):
         self.callback = callback
@@ -23,8 +24,9 @@ class LyricGrabber(object):
         self.discoverer = GstPbutils.Discoverer(timeout=Gst.SECOND * 3)
         self.discoverer.connect('discovered', self.search_tags_result)
         self.discoverer.start()
+        self.discoverer.discover_uri_async(self.uri)
 
-    def search_tags_result(self):
+    def search_tags_result(self, , discoverer, info, error):
         """
         Extract lyrics from the file meta data (tags).
 

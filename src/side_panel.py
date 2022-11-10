@@ -81,7 +81,7 @@ class SidePanel:
             self.set_displayed_text("No songs playing so here is some love\n<333 :3\n<333 :3")
             return
 
-        lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry.get_playback_uri())
+        lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry)
         lyrics_grabber.search_lyrics(self.set_displayed_text)
 
 
