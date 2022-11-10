@@ -7,7 +7,7 @@ import os
 __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
 
 current = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(parent)
+sys.path.append(current)
 import song_info_window
 
 """
