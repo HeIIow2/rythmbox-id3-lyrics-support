@@ -1,5 +1,6 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 import sys
+import os
 
 # from song_info_window import LyricsWidget
 
