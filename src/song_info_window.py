@@ -75,5 +75,5 @@ class LyricsWidget(Gtk.Widget):
             return
 
         self.buffer.set_text(_("Searching for lyrics..."), -1);
-        lyrics_grabber = LyricGrabber(self.db, self.entry)
+        lyrics_grabber = LyricGrabber(self.entry.get_playback_uri())
         lyrics_grabber.search_lyrics(self.__got_lyrics)

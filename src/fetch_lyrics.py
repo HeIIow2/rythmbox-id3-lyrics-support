@@ -6,8 +6,8 @@ FILE_INDICATOR = "file://"
 
 
 class LyricGrabber(object):
-    def __init__(self, db, entry):
-        self.entry = entry
+    def __init__(self, uri):
+        self.uri = uri
 
     def search_lyrics(self, callback):
         self.callback = callback
@@ -20,13 +20,12 @@ class LyricGrabber(object):
 
         Result will be handled in search_tags_result
         """
-        location = self.entry.get_playback_uri()
         self.discoverer = GstPbutils.Discoverer(timeout=Gst.SECOND * 3)
         self.discoverer.connect('discovered', self.search_tags_result)
         self.discoverer.start()
-        self.discoverer.discover_uri_async(location)
+        self.discoverer.discover_uri_async(self.uri)
 
-    def search_tags_result(self, discoverer, info, error):
+    def search_tags_result(self):
         """
         Extract lyrics from the file meta data (tags).
 
@@ -38,11 +37,10 @@ class LyricGrabber(object):
 
         is_local = False
 
-        url = self.entry.get_playback_uri()
         path = ""
-        if FILE_INDICATOR == url[:len(FILE_INDICATOR)]:
+        if FILE_INDICATOR == self.uri[:len(FILE_INDICATOR)]:
             is_local = True
-            path = urllib.parse.unquote(url[len(FILE_INDICATOR):])
+            path = urllib.parse.unquote(self.uri[len(FILE_INDICATOR):])
             print(path)
 
         if not is_local:

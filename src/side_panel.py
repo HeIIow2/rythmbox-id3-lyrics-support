@@ -19,6 +19,7 @@ VIEW_MENU_UI = """
 class SidePanel:
     def __init__(self, shell):
         self.shell = shell
+        self.player = self.shell.props.shell_player
         self.position = RB.ShellUILocation.RIGHT_SIDEBAR
         self.hide_label = False
 
@@ -65,7 +66,53 @@ class SidePanel:
         self.shell.add_widget(self.vbox, self.position, True, True)
 
 
+        # THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # Search lyrics everytime the song changes
+        self.psc_id = self.player.connect('playing-song-changed', self.update_lyrics)
         self.set_displayed_text("sex")
 
     def set_displayed_text(self, text):
         self.textbuffer.set_text(text)
+
+
+    def update_lyrics(self, player, entry):
+        current_src = self.shell.props.shell_player.get_playing_source()
+        if current_src is None:
+            self.set_displayed_text("No songs playing so here is some love\n<333 :3\n<333 :3")
+            return
+
+        lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry.get_playback_uri())
+        lyrics_grabber.search_lyrics(self.show_lyrics)
+
+
+    def scan_selected_source_callback(self, action, activated_action):
+        if not action.get_active():
+            return
+
+        source = activated_action
+        if source == "SelectNothing" or source == self.current_source:
+            return
+
+        self.scan_source(source, self.clean_artist, self.clean_title)
+
+    def show_lyrics(self, lyrics):
+        if self.current_source is None:
+            self.set_radio_menu_item_active("SelectNothing")
+        elif self.current_source == "From cache file":
+            self.set_radio_menu_item_active(_("From cache file"))
+        else:
+            self.set_radio_menu_item_active(self.current_source)
+
+        if lyrics == "":
+            print("no lyrics found")
+            lyrics = _("No lyrics found")
+        else:
+            lyrics, self.tags = Util.parse_lrc(lyrics)
+
+        self.textbuffer.set_text("%s - %s\n%s" % (self.artist, self.title, lyrics))
+
+        # make 'artist - title' header bold and underlined
+        start = self.textbuffer.get_start_iter()
+        end = start.copy()
+        end.forward_to_line_end()
+        self.textbuffer.apply_tag(self.tag, start, end)
