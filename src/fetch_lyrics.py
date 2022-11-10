@@ -80,4 +80,3 @@ class LyricGrabber(object):
 
     def set_text(self, text: str):
         self.textbuffer.set_text(text)
-        self.textbuffer.apply_tag(self.tag, 0, -1)

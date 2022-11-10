@@ -3,6 +3,7 @@ from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils, Pango
 import src.fetch_lyrics
 from src.utils import get_missing_lyrics_message
 
+
 # thanks soooo much <333 https://github.com/dmo60/lLyrics
 
 
@@ -35,7 +36,6 @@ class SidePanel:
         self.textbuffer = Gtk.TextBuffer()
         self.textview.set_buffer(self.textbuffer)
 
-
         # tag to highlight synchronized lyrics
         self.sync_tag = self.textbuffer.create_tag(None, weight=600)
 
@@ -53,15 +53,13 @@ class SidePanel:
 
         self.shell.add_widget(self.vbox, self.position, True, True)
 
-
         # THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # Search lyrics everytime the song changes
         self.psc_id = self.player.connect('playing-song-changed', self.update_lyrics)
-        self.set_displayed_text("sex")
+        self.set_displayed_text(get_missing_lyrics_message())
 
     def set_displayed_text(self, text):
         self.textbuffer.set_text(text)
-
 
     def update_lyrics(self, player, entry):
         current_src = self.shell.props.shell_player.get_playing_source()
@@ -71,7 +69,6 @@ class SidePanel:
 
         lyrics_grabber = src.fetch_lyrics.LyricGrabber(entry, self.textbuffer)
         # lyrics_grabber.search_lyrics(self.set_displayed_text)
-
 
     def scan_selected_source_callback(self, action, activated_action):
         if not action.get_active():
