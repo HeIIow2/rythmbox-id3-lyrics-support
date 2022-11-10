@@ -1,4 +1,4 @@
-from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils, RBShell
+from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 
 import src.fetch_lyrics
 
@@ -17,7 +17,7 @@ VIEW_MENU_UI = """
 
 
 class SidePanel:
-    def __init__(self, shell: RBShell):
+    def __init__(self, shell):
         self.shell = shell
 
         uim = self.shell.get_ui_manager()
