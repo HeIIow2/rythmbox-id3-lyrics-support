@@ -1,8 +1,12 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
+import sys
 
 # from song_info_window import LyricsWidget
 
 __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
+
+current = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(parent)
 import song_info_window
 
 """
