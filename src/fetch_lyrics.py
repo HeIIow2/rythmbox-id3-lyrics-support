@@ -69,7 +69,7 @@ class LyricGrabber(object):
 
         # self.callback(final_lyrics)
 
-        self.textbuffer.set_text("%s - %s\n%s" % (artist, title, lyrics))
+        self.textbuffer.set_text("%s - %s\n%s" % (artist, title, lyrics_text))
 
         # make 'artist - title' header bold and underlined
         start = self.textbuffer.get_start_iter()
