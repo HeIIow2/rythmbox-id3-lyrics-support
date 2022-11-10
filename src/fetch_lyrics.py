@@ -57,7 +57,7 @@ class LyricGrabber(object):
         lyrics_list = tags.getall("USLT")
 
         if len(lyrics_list) == 0:
-            self.callback(get_missing_lyrics_message())
+            self.set_text(get_missing_lyrics_message())
             return
 
         artist = self.entry.get_string(RB.RhythmDBPropType.ARTIST)
@@ -77,3 +77,7 @@ class LyricGrabber(object):
         end = start.copy()
         end.forward_to_line_end()
         self.textbuffer.apply_tag(self.tag, start, end)
+
+    def set_text(self, text: str):
+        self.textbuffer.set_text(text)
+        self.textbuffer.apply_tag(self.tag, 0, -1)
