@@ -20,9 +20,8 @@ class SidePanel:
     def __init__(self, shell):
         self.shell = shell
 
-        uim = self.shell.props.ui_manager
+        uim = self.shell.get_ui_manager()
         uim.add_ui_from_string(VIEW_MENU_UI)
-        uim.ensure_update()
 
         self.vbox = Gtk.VBox()
 
