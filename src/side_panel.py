@@ -64,5 +64,8 @@ class SidePanel:
 
         self.shell.add_widget(self.vbox, self.position, True, True)
 
+
+        self.set_displayed_text("sex")
+
     def set_displayed_text(self, text):
         self.textbuffer.set_text(text)
