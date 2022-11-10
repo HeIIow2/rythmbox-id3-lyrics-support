@@ -1,6 +1,5 @@
 from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 
-import side_panel
 from song_info_window import LyricsWidget
 
 """
@@ -11,8 +10,6 @@ thanks <33333 :3
 """
 
 FILE_INDICATOR = "file://"
-
-
 
 
 class ID3Lyrics(GObject.Object, Peas.Activatable):
