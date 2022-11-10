@@ -2,7 +2,7 @@ from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
 
 import os, sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-from fetch_lyrics import LyricGrabber
+from src.fetch_lyrics import LyricGrabber
 
 
 def create_lyrics_view():
