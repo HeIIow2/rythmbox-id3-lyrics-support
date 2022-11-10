@@ -6,7 +6,7 @@ import src.song_info_window
 
 # from song_info_window import LyricsWidget
 
-__all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
+# __all__ = ["fetch_lyrics", "song_info_window", "side_panel"]
 
 
 
