@@ -24,7 +24,7 @@ class ID3Lyrics(GObject.Object, Peas.Activatable):
         print("activating support for id3 lyrics")
 
         shell = self.object
-        print(dir(shell.props))
+        print(dir(shell.props.window))
         self.side_panel = side_panel.SidePanel(shell)
         self.csi_id = shell.connect("create_song_info", self.create_song_info)
 
