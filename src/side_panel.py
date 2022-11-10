@@ -1,4 +1,4 @@
-from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils
+from gi.repository import GObject, RB, Peas, Gtk, Gst, GstPbutils, Pango
 
 import src.fetch_lyrics
 
