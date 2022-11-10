@@ -56,7 +56,7 @@ class SidePanel:
         # self.vbox.pack_end(self.back_button, False, False, 3)
 
         self.vbox.show_all()
-        self.hbox.hide()
+        # self.hbox.hide()
 
         if self.hide_label:
             self.label.hide()
